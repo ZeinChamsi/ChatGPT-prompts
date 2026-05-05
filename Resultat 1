@@ -1,0 +1,203 @@
+Nice, kul uppgift – men jag säger det direkt: du kommer inte undan med “lite teori” här 😄 Du behöver något som faktiskt funkar direkt. Så jag ger dig en färdig enkel webbsida du kan klistra in i VS Code och köra direkt.
+
+Vi gör det i ren HTML, CSS och lite JavaScript (ingen installation behövs).
+
+🔧 Steg 1 – skapa filer i VS Code
+
+Skapa en mapp, t.ex. pvp-website, och lägg in dessa filer:
+
+index.html
+styles.css
+script.js
+🏠 1. index.html (hela sidan)
+
+Kopiera ALLT detta:
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>PVP Clothing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <h1>PVP</h1>
+        <nav>
+            <a href="#">Hem</a>
+            <a href="#products">Produkter</a>
+            <a href="#">Kontakt</a>
+        </nav>
+    </header>
+
+    <!-- HERO / FÖRSTASIDA -->
+    <section class="hero">
+        <h2>Ny kollektion ute nu</h2>
+        <p>Upptäck våra senaste plagg</p>
+        <button onclick="scrollToProducts()">Shoppa nu</button>
+    </section>
+
+    <!-- PRODUKTER -->
+    <section id="products">
+        <h2>Alla produkter</h2>
+
+        <!-- FILTER -->
+        <div class="filters">
+            <button onclick="filterProducts('all')">Alla</button>
+            <button onclick="filterProducts('tshirt')">T-shirts</button>
+            <button onclick="filterProducts('hoodie')">Hoodies</button>
+            <button onclick="filterProducts('keps')">Kepsar</button>
+            <button onclick="filterProducts('byxor')">Byxor</button>
+            <button onclick="filterProducts('skor')">Skor</button>
+        </div>
+
+        <!-- PRODUKTLISTA -->
+        <div class="product-grid">
+
+            <div class="product tshirt">
+                <h3>T-shirt Black</h3>
+                <p>299 kr</p>
+            </div>
+
+            <div class="product hoodie">
+                <h3>Hoodie Grey</h3>
+                <p>599 kr</p>
+            </div>
+
+            <div class="product keps">
+                <h3>Keps Classic</h3>
+                <p>199 kr</p>
+            </div>
+
+            <div class="product byxor">
+                <h3>Byxor Slim</h3>
+                <p>499 kr</p>
+            </div>
+
+            <div class="product skor">
+                <h3>Sneakers White</h3>
+                <p>799 kr</p>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+🎨 2. styles.css (design)
+
+Kopiera:
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* HERO */
+.hero {
+    height: 80vh;
+    background: url('https://via.placeholder.com/1200x600') center/cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* PRODUKTER */
+#products {
+    padding: 40px;
+    text-align: center;
+}
+
+.filters button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+⚙️ 3. script.js (filter + knapp)
+
+Kopiera:
+
+function filterProducts(category) {
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+        if (category === "all") {
+            product.style.display = "block";
+        } else {
+            if (product.classList.contains(category)) {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
+        }
+    });
+}
+
+function scrollToProducts() {
+    document.getElementById("products").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+✅ Vad du nu har
+✔ Snygg startsida (hero)
+✔ Meny högst upp
+✔ Produktsida
+✔ Filterfunktion (funkar direkt)
+🚀 Hur du startar sidan
+Högerklicka på index.html
+Klicka "Open with Live Server" (installera extension om du inte har)
+💡 Nästa steg (säg till så bygger vi vidare)
+
+Jag kan hjälpa dig göra detta mycket mer “riktigt”:
+
+🖼️ 
+Lägga in riktiga produktbilder
+🛒 
+Varukorg
+🔐 
+Inloggning
+💳 
+Betalning (Stripe)
+📱 
+Mobilanpassning (viktigt!)
+
+Vill du att jag gör sidan mer “premium streetwear style” (typ minimalistisk som Zara/Represent) eller ska vi bygga vidare med funktioner direkt?
