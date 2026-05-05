@@ -1,0 +1,159 @@
+Bra att du frågar innan du går live – här är många som gissar och det brukar sluta rörigt. Jag går rakt på sak och gör det konkret.
+
+🌍 DEL 1: Hur du publicerar sidan (steg för steg)
+
+Du har just nu en statisk hemsida (HTML/CSS/JS) → perfekt, det är enklaste att publicera.
+
+🥇 ENKELASTE SÄTTET (rekommenderas): Netlify
+🔧 Steg 1: skapa konto
+
+Gå till:
+👉 https://www.netlify.com
+
+Skapa konto (Google funkar)
+
+📁 Steg 2: förbered din mapp
+
+Din mapp ska se ut så här:
+
+pvp-website/
+│
+├── index.html
+├── styles.css
+├── script.js
+├── about.html
+└── images/
+
+👉 Superviktigt: index.html måste ligga i roten
+
+🚀 Steg 3: ladda upp
+Gå till Netlify
+Dra hela mappen in i sidan (“Deploy site”)
+Vänta ~10 sek
+
+👉 KLART – du får en länk typ:
+
+https://pvp-shop-123.netlify.app
+🌐 Steg 4: egen domän (valfritt men viktigt)
+
+Vill ni se seriösa ut:
+
+Köp domän via:
+
+One.com
+GoDaddy
+Namecheap
+
+Exempel:
+
+pvpclothing.se
+
+Sen kopplar du den i Netlify (de har guide).
+
+⚠️ Viktigt (du måste förstå detta)
+
+Din nuvarande sida är:
+
+👉 Frontend-only
+
+Det betyder:
+
+❌ Ingen riktig betalning
+❌ Ingen order sparas
+❌ Ingen backend
+
+Så:
+👉 Kunder kan klicka “köp” men inget händer på riktigt
+
+💳 För att göra det “på riktigt”
+
+Du behöver:
+
+Betalning
+Stripe (bäst för nybörjare)
+Swish API (svårare)
+Backend (lagra orders)
+Node.js / Firebase / Shopify
+
+👉 Om du är ny:
+Mitt råd:
+Starta med:
+
+Netlify + din sida (för demo)
+Sen bygg riktig checkout
+
+Jag kan hjälpa dig med detta steg-för-steg.
+
+🧠 DEL 2: Vem äger hemsidan?
+
+Bra att du är tydlig här – det är viktigt.
+
+📜 Kort svar:
+
+👉 Företaget (PVP) ska äga allt
+
+Men det beror på några saker:
+
+🧑‍💻 DU som utvecklare
+
+Om du bygger detta åt jobbet:
+
+👉 Normalt gäller:
+
+Koden du skriver i arbetet → tillhör företaget
+Domänen → bör registreras i företagets namn
+Hosting → ska stå på företaget
+🤖 Jag (AI)
+
+👉 Jag äger ingenting
+
+Du får använda all kod fritt
+Ingen licens
+Ingen copyright från mig
+⚠️ Viktiga saker att fixa direkt
+1. Registrera allt i företagets namn
+Domän → företagets email
+Netlify konto → företagets konto (inte ditt privata!)
+2. Spara koden i företagets repo
+
+Använd:
+
+GitHub
+
+Så ni inte tappar allt om du slutar.
+
+3. Avtal (om du vill vara seriös)
+
+Om du är anställd:
+
+Det är redan implicit
+
+Om du är frilans:
+
+Skriv att företaget äger allt
+🧠 Reality check (viktigt)
+
+Just nu har du:
+👉 En snygg demo-webshop
+
+För att bli en riktig butik behövs:
+
+betalning
+orderhantering
+lager
+mailbekräftelser
+🚀 Vill du ta nästa steg?
+
+Jag kan hjälpa dig bygga:
+
+💳 Riktig Stripe checkout
+💾 Spara orders
+📦 Skicka ordermail
+📊 Adminpanel
+
+Säg bara:
+👉 "gör riktig checkout med Stripe"
+eller
+👉 "gör sidan redo för riktiga kunder"
+
+så guidar jag dig hela vägen.
