@@ -1,0 +1,192 @@
+Bra att du tar upp det – just nu är din sida mer “basic webshop” än high fashion. Vi kan fixa det ganska snabbt med rätt designval.
+
+Jag delar upp det i två delar:
+
+🎨 Uppgradera designen (din stil: high fashion / clean / kantig)
+🖼️ Hur du lägger in dina egna produktbilder (enkelt)
+🎨 1. NY DESIGN (high fashion / minimalistisk)
+
+Byt ut HELA din styles.css mot detta:
+
+body {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+}
+
+/* NAVBAR */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    letter-spacing: 4px;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+/* HERO */
+.hero {
+    height: 70vh;
+    background: #eaeaea;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+}
+
+/* PRODUKTER */
+#products {
+    padding: 60px 40px;
+}
+
+.filters {
+    margin-bottom: 30px;
+}
+
+.filters button {
+    border: 1px solid black;
+    background: white;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* PRODUKTKORT */
+.product {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    transition: 0.2s;
+}
+
+.product:hover {
+    border: 1px solid black;
+}
+
+/* BILDER */
+.product img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* KNAPP */
+.product button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background: black;
+    color: white;
+}
+
+/* VARUKORG */
+.cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background: white;
+    border-left: 2px solid black;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+👉 Nu känns sidan mer:
+
+clean
+fashion
+kantig (inga rundade hörn)
+svart/vit/grå
+🖼️ 2. LÄGG IN DINA PRODUKTBILDER
+📁 Steg 1: skapa bildmapp
+
+I din projektmapp:
+
+pvp-website/
+│
+├── index.html
+├── styles.css
+├── script.js
+└── images/
+    ├── tshirt.png
+    ├── hoodie.png
+    ├── keps.png
+
+👉 Dra in dina PNG-bilder i images-mappen
+
+✏️ Steg 2: uppdatera produkter i index.html
+
+Exempel – ändra EN produkt så här:
+
+<div class="product tshirt">
+    <img src="images/tshirt.png" alt="T-shirt">
+    <h3>Basic T-shirt</h3>
+    <p>Stilren och bekväm vardagströja</p>
+    <p>299 kr</p>
+    <button onclick="addToCart('T-shirt', 299)">Lägg i varukorg</button>
+</div>
+
+Gör samma för alla produkter:
+
+<img src="images/hoodie.png">
+<img src="images/keps.png">
+<img src="images/byxor.png">
+<img src="images/skor.png">
+⚠️ Vanliga misstag (du kommer stöta på minst en av dessa)
+
+❌ Bild visas inte?
+
+Kontrollera stavning: tshirt.png vs t-shirt.png
+Kolla att mappen heter exakt images
+
+❌ Vit ruta istället för bild?
+
+Filen ligger fel (måste vara i samma projektmapp)
+💡 Tips (gör det mycket mer “high fashion”)
+
+Vill du verkligen imponera på chefen:
+
+Använd mycket whitespace
+Ha korta texter
+Bilder ska vara fokus (stora!)
+Samma bakgrund på alla produktbilder (helst vit/grå)
+🚀 Nästa nivå (rekommenderas starkt)
+
+Säg till så fixar jag:
+
+🔥 Hover-effekt (bild byts när man hovrar)
+🛒 Slide-in varukorg (som riktiga shops)
+📱 Mobilversion (just nu halvbra)
+🎯 Produkt-sida (klicka → egen sida)
+
+Vill du att jag gör sidan ännu mer lyxig (typ Acne Studios / Zara vibe) eller vill du fokusera på funktioner nu?
