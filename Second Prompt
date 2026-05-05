@@ -1,0 +1,283 @@
+Bra – nu börjar det likna en riktig webshop. Men jag säger det rakt: vi kommer inte bygga Klarna/Amazon-nivå backend här, utan en frontend-demo som ser och känns riktig (perfekt för din chef). Allt funkar i webbläsaren med JavaScript.
+
+Jag ger dig redo kod du kan klistra in direkt, och vi bygger vidare på det du redan har.
+
+🔧 UPPDATERA DIN STRUKTUR
+
+Du ska nu ha:
+
+index.html
+styles.css
+script.js
+➕ about.html (ny sida)
+🏠 1. UPPDATERA index.html
+
+Byt ut hela din fil mot denna:
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>PVP Clothing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>PVP</h1>
+    <nav>
+        <a href="#">Hem</a>
+        <a href="#products">Produkter</a>
+        <a href="about.html">Om oss</a>
+        <a href="#" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Ny kollektion ute nu</h2>
+    <p>din självklara mjuka-varor butik</p>
+</section>
+
+<section id="products">
+    <h2>Produkter</h2>
+
+    <div class="filters">
+        <button onclick="filterProducts('all')">Alla</button>
+        <button onclick="filterProducts('tshirt')">T-shirts</button>
+        <button onclick="filterProducts('hoodie')">Hoodies</button>
+        <button onclick="filterProducts('keps')">Kepsar</button>
+        <button onclick="filterProducts('byxor')">Byxor</button>
+        <button onclick="filterProducts('skor')">Skor</button>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product tshirt">
+            <h3>Basic T-shirt</h3>
+            <p>Stilren och bekväm vardagströja</p>
+            <p>299 kr</p>
+            <button onclick="addToCart('T-shirt', 299)">Lägg i varukorg</button>
+        </div>
+
+        <div class="product hoodie">
+            <h3>Premium Hoodie</h3>
+            <p>Mjuk hoodie i hög kvalitet</p>
+            <p>599 kr</p>
+            <button onclick="addToCart('Hoodie', 599)">Lägg i varukorg</button>
+        </div>
+
+        <div class="product keps">
+            <h3>Keps Classic</h3>
+            <p>Perfekt för alla outfits</p>
+            <p>199 kr</p>
+            <button onclick="addToCart('Keps', 199)">Lägg i varukorg</button>
+        </div>
+
+        <div class="product byxor">
+            <h3>Slim Byxor</h3>
+            <p>Modern passform</p>
+            <p>499 kr</p>
+            <button onclick="addToCart('Byxor', 499)">Lägg i varukorg</button>
+        </div>
+
+        <div class="product skor">
+            <h3>Sneakers</h3>
+            <p>Minimalistisk design</p>
+            <p>799 kr</p>
+            <button onclick="addToCart('Skor', 799)">Lägg i varukorg</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- VARUKORG -->
+<div id="cart" class="cart hidden">
+    <h2>Varukorg</h2>
+    <div id="cart-items"></div>
+    <h3>Total: <span id="total-price">0</span> kr</h3>
+
+    <h4>Leverans</h4>
+    <select id="shipping">
+        <option value="0">Postnord (Gratis över 599kr)</option>
+        <option value="49">Earlybird - 49kr</option>
+        <option value="79">DHL - 79kr</option>
+    </select>
+
+    <h4>Betalning</h4>
+    <select>
+        <option>Swish</option>
+        <option>Bankkonto</option>
+    </select>
+
+    <button onclick="checkout()">Checkout</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+⚙️ 2. UPPDATERA script.js
+
+Byt ut allt:
+
+let cart = [];
+
+function addToCart(name, price) {
+    let item = cart.find(p => p.name === name);
+
+    if (item) {
+        item.quantity++;
+    } else {
+        cart.push({ name, price, quantity: 1 });
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    let cartItems = document.getElementById("cart-items");
+    let total = 0;
+    let count = 0;
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        cartItems.innerHTML += `
+            <div>
+                ${item.name} (${item.quantity}) - ${item.price * item.quantity} kr
+                <button onclick="changeQty(${index}, 1)">+</button>
+                <button onclick="changeQty(${index}, -1)">-</button>
+                <button onclick="removeItem(${index})">Ta bort</button>
+            </div>
+        `;
+    });
+
+    // Fri frakt över 599
+    let shippingCost = document.getElementById("shipping").value;
+    if (total >= 599) shippingCost = 0;
+
+    document.getElementById("total-price").innerText = total + parseInt(shippingCost);
+    document.getElementById("cart-count").innerText = count;
+}
+
+function changeQty(index, change) {
+    cart[index].quantity += change;
+    if (cart[index].quantity <= 0) cart.splice(index, 1);
+    updateCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function toggleCart() {
+    document.getElementById("cart").classList.toggle("hidden");
+}
+
+function checkout() {
+    alert("Tack för ditt köp!");
+    cart = [];
+    updateCart();
+}
+
+function filterProducts(category) {
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(p => {
+        if (category === "all" || p.classList.contains(category)) {
+            p.style.display = "block";
+        } else {
+            p.style.display = "none";
+        }
+    });
+}
+🎨 3. UPPDATERA styles.css
+
+Lägg till längst ner:
+
+.cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: white;
+    border-left: 1px solid #ccc;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.product button {
+    margin-top: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+📄 4. NY FIL – about.html
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Om oss - PVP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>PVP</h1>
+    <nav>
+        <a href="index.html">Hem</a>
+    </nav>
+</header>
+
+<section style="padding: 40px;">
+    <h2>Om oss</h2>
+    <p>PVP grundades 2026.</p>
+    <p>Vi är din självklara mjuka-varor butik.</p>
+    <p>Vi säljer ett noggrant utvalt sortiment av kläder med fokus på kvalitet och stil.</p>
+</section>
+
+</body>
+</html>
+✅ NU HAR DU:
+
+✔ Produkter med titel, pris & beskrivning
+✔ Varukorg (lägg till, ta bort, ändra antal)
+✔ Totalpris + fraktlogik
+✔ Checkout (demo)
+✔ Betalningsalternativ (UI)
+✔ Leveransalternativ
+✔ Om oss-sida
+
+⚠️ Viktigt (detta kommer din chef fråga)
+
+Det här är:
+
+❌ Inte riktig betalning
+❌ Inte sparad data
+❌ Ingen backend
+
+Det är en frontend-demo webshop.
+
+🚀 Vill du ta det till nästa nivå?
+
+Jag kan hjälpa dig bygga:
+
+🛒 Riktig checkout (Stripe / Swish API)
+💾 Spara varukorg (localStorage)
+🔐 Adminpanel (lägga till produkter)
+📱 Mobilanpassning (just nu är den basic)
+🎯 Design som ser ut som riktiga brands
+
+Säg bara:
+👉 "gör sidan riktigt snygg som ett premium brand"
+eller
+👉 "lägg till riktiga betalningar"
+
+så tar vi nästa steg.
