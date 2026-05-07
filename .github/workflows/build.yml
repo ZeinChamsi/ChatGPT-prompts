@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+      - Prompt-1-chatgpt
+      - Prompt-2-chatgpt
+      - Prompt-3-chatgpt
+      - Prompt-4-chatgpt
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
