@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+   <meta charset="UTF-8">
+   <title>PVP Clothing</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+   <h1>PVP</h1>
+   <nav>
+       <a href="#">Hem</a>
+       <a href="#products">Produkter</a>
+       <a href="about.html">Om oss</a>
+       <a href="#" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</a>
+   </nav>
+</header>
+
+<section class="hero">
+   <h2>Ny kollektion ute nu</h2>
+   <p>din självklara mjuka-varor butik</p>
+</section>
+
+<section id="products">
+   <h2>Produkter</h2>
+
+   <div class="filters">
+       <button onclick="filterProducts('all')">Alla</button>
+       <button onclick="filterProducts('tshirt')">T-shirts</button>
+       <button onclick="filterProducts('hoodie')">Hoodies</button>
+       <button onclick="filterProducts('keps')">Kepsar</button>
+       <button onclick="filterProducts('byxor')">Byxor</button>
+       <button onclick="filterProducts('skor')">Skor</button>
+   </div>
+
+   <div class="product-grid">
+
+       <div class="product tshirt">
+        <img src="images/shirt.png" alt="T-shirt">
+           <h3>Basic T-shirt</h3>
+           <p>Stilren och bekväm vardagströja</p>
+           <p>299 kr</p>
+           <button onclick="addToCart('T-shirt', 299)">Lägg i varukorg</button>
+       </div>
+
+       <div class="product hoodie">
+           <h3>Premium Hoodie</h3>
+           <p>Mjuk hoodie i hög kvalitet</p>
+           <p>599 kr</p>
+           <button onclick="addToCart('Hoodie', 599)">Lägg i varukorg</button>
+       </div>
+
+       <div class="product keps">
+        <img src="images/keps.png" alt="keps">
+           <h3>Keps Classic</h3>
+           <p>Perfekt för alla outfits</p>
+           <p>199 kr</p>
+           <button onclick="addToCart('Keps', 199)">Lägg i varukorg</button>
+       </div>
+
+       <div class="product byxor">
+        <img src="images/byxor.png" alt="byxor">
+           <h3>Slim Byxor</h3>
+           <p>Modern passform</p>
+           <p>499 kr</p>
+           <button onclick="addToCart('Byxor', 499)">Lägg i varukorg</button>
+       </div>
+
+       <div class="product skor">
+        <img src="images/skor.png" alt="skor">
+           <h3>Sneakers</h3>
+           <p>Minimalistisk design</p>
+           <p>799 kr</p>
+           <button onclick="addToCart('Skor', 799)">Lägg i varukorg</button>
+       </div>
+
+   </div>
+</section>
+
+<!-- VARUKORG -->
+<div id="cart" class="cart hidden">
+   <h2>Varukorg</h2>
+   <div id="cart-items"></div>
+   <h3>Total: <span id="total-price">0</span> kr</h3>
+
+   <h4>Leverans</h4>
+   <select id="shipping">
+       <option value="0">Postnord (Gratis över 599kr)</option>
+       <option value="49">Earlybird - 49kr</option>
+       <option value="79">DHL - 79kr</option>
+   </select>
+
+   <h4>Betalning</h4>
+   <select>
+       <option>Swish</option>
+       <option>Bankkonto</option>
+   </select>
+
+   <button onclick="checkout()">Checkout</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
